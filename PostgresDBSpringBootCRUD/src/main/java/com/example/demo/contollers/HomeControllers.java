@@ -20,18 +20,26 @@ public class HomeControllers {
     }
 
     @GetMapping("getcities")
+    @ResponseStatus(HttpStatus.OK)
     public List<City> getCities(){
         return cityService.getCities();
     }
 
     @PostMapping("addcity")
+    @ResponseStatus(HttpStatus.CREATED)
     public City addCity(@RequestBody City city){
         return cityService.saveCity(city);
     }
 
     @GetMapping("/getcity/{cityName}")
-    @ResponseStatus(HttpStatus.CREATED)
+    @ResponseStatus(HttpStatus.OK)
     public City getCity(@PathVariable String cityName){
         return cityService.getCity(cityName);
+    }
+
+    @DeleteMapping("/deletecity/{cityName}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteCity(@PathVariable String cityName){
+        cityService.deleteCity(cityName);
     }
 }

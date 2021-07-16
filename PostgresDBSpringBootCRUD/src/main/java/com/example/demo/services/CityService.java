@@ -27,4 +27,9 @@ public class CityService {
     public City getCity(String cityName) {
         return cityRepository.findByCityname(cityName);
     }
+
+    public void deleteCity(String cityName) {
+        System.out.println(cityName);
+        int retval = cityRepository.deleteCityname(cityName);
+    }
 }
