@@ -1,6 +1,6 @@
-package com.example.demo.Repositories;
+package com.example.demo.Repository;
 
-import com.example.demo.entities.City;
+import com.example.demo.Model.CityModel;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -10,11 +10,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Repository
 @Transactional
-public interface CityRepositories extends JpaRepository<City, Long> {
+public interface CityRepository extends JpaRepository<CityModel, Long> {
 
-    City findByCityname(String cityname);
+    CityModel findByCityname(String cityname);
 
     @Modifying
-    @Query("delete from City a where a.cityname = :cityname")
+    @Query("delete from CityModel a where a.cityname = :cityname")
     int deleteCityname(@Param("cityname") String cityname);
 }

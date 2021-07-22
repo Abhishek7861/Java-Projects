@@ -1,10 +1,10 @@
-package com.example.demo.entities;
+package com.example.demo.Model;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "cities")
-public class City {
+public class CityModel {
 
     @Id
     @Column(name = "city_id")
@@ -30,4 +30,11 @@ public class City {
         this.cityname = cityname;
     }
 
+    @Override
+    public String toString() {
+        return "CityModel{" +
+                "id=" + id +
+                ", cityname='" + cityname + '\'' +
+                '}';
+    }
 }
