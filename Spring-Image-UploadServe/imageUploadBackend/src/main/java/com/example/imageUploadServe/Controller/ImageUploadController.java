@@ -4,7 +4,6 @@ import com.example.imageUploadServe.Model.ImageModel;
 import com.example.imageUploadServe.Repository.ImageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -24,13 +23,13 @@ public class ImageUploadController {
     ImageRepository imageRepository;
 
     @PostMapping("/upload")
-    public ResponseEntity.BodyBuilder uplaodImage(@RequestParam("imageFile") MultipartFile file) throws IOException {
+    @ResponseStatus(HttpStatus.OK)
+    public void uplaodImage(@RequestParam("imageFile") MultipartFile file) throws IOException {
 
         System.out.println("Original Image Byte Size - " + file.getBytes().length);
         ImageModel img = new ImageModel(file.getOriginalFilename(), file.getContentType(),
                 compressBytes(file.getBytes()));
         imageRepository.save(img);
-        return ResponseEntity.status(HttpStatus.OK);
     }
 
     @GetMapping(path = { "/get/{imageName}" })
