@@ -55,27 +55,27 @@ class AsyncWebClientApplicationTests {
 				.verifyComplete();
 	}
 
-//	@Test
-//	void contextMockUserAndCheck() {
-//
-//		User userDummy = new User();
-//		userDummy.setName("Abhishek")
-//		userDummy.setId(1)
-//		userDummy.setEmail("a@a.com")
-//
-//		when(webClientMock.get()).thenReturn(requestHeadersUriSpecMock)
-//		when(requestHeadersUriSpecMock.uri(anyString())).thenReturn(requestHeadersSpecMock)
-//		when(requestHeadersSpecMock.retrieve()).thenReturn(responseSpecMock)
-//		when(responseSpecMock.bodyToMono(User.class)).thenReturn(Mono.just(userDummy));
-//
-//		Mono<User> userMono =  userService
-//				.getUserByIdAsync("1");
-//
-//		StepVerifier.create(userMono)
-//				.expectNextMatches( user-> user.getEmail()
-//						.equals(userDummy.getEmail()))
-//				.verifyComplete();
-//	}
+	@Test
+	void contextMockUserAndCheck() {
+		UserService userService = new UserService(webClientMock)
+		User userDummy = new User();
+		userDummy.setName("Abhishek")
+		userDummy.setId(1)
+		userDummy.setEmail("a@a.com")
+
+		when(webClientMock.get()).thenReturn(requestHeadersUriSpecMock)
+		when(requestHeadersUriSpecMock.uri("/users/{id}","1")).thenReturn(requestHeadersSpecMock)
+		when(requestHeadersSpecMock.retrieve()).thenReturn(responseSpecMock)
+		when(responseSpecMock.bodyToMono(User.class)).thenReturn(Mono.just(userDummy))
+
+		Mono<User> userMono =  userService
+				.getUserByIdAsync("1");
+
+		StepVerifier.create(userMono)
+				.expectNextMatches( user-> user.getEmail()
+						.equals("a@a.com"))
+				.verifyComplete();
+	}
 
 	@Test
 	void contextMockWebServerUserAndCheck() {

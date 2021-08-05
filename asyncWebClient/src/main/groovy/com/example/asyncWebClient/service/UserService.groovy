@@ -12,8 +12,11 @@ import reactor.core.publisher.Mono
 @AllArgsConstructor
 @Slf4j
 class UserService {
-    @Autowired
-    WebClient webClient;
+
+    private WebClient webClient;
+    public UserService(WebClient webClient) {
+        this.webClient = webClient;
+    }
     private static final String USERS_URL_TEMPLATE = "/users/{id}";
 
 
