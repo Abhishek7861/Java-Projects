@@ -9,8 +9,8 @@ import org.springframework.web.reactive.function.client.WebClient
 @Configuration
 
 class WebClientConfiguration {
-//    private static final String BASE_URL = "https://jsonplaceholder.typicode.com";
-    private static final String BASE_URL = "http://localhost:8080";
+    private static final String BASE_URL = "https://jsonplaceholder.typicode.com";
+//    private static final String BASE_URL = "http://localhost:8080";
     public static final int TIMEOUT = 1000;
 
     @Bean

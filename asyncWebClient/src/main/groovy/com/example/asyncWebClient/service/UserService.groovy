@@ -14,14 +14,14 @@ import reactor.core.publisher.Mono
 class UserService {
     @Autowired
     WebClient webClient;
-    private static final String USERS_URL_TEMPLATE = "/users";
+    private static final String USERS_URL_TEMPLATE = "/users/{id}";
 
 
 
     public Mono<User> getUserByIdAsync(final String id) {
         return webClient
                 .get()
-                .uri(USERS_URL_TEMPLATE)
+                .uri(USERS_URL_TEMPLATE, id)
                 .retrieve()
                 .bodyToMono(User.class);
     }
